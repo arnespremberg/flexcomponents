@@ -1,0 +1,21 @@
+{
+    "name": "arnespremberg/flexcomp",
+    "description": "A component based theme boilerplate for WordPress based on Advanced Custom Fields' flexible content field",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "advanced-custom-fields/advanced-custom-fields-pro",
+                "version": "*.*.*(.*)",
+                "type": "library",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download"
+                },
+                "require": {
+                    "philippbaschke/acf-pro-installer": "latest"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+.post-nav {
+    display: inline-flex;
+    align-items: flex-end;
+    height: calc(100vh - 100px);
+    grid-column-start: 3;
+    grid-column-end: 6;
+    & > .center {
+        text-align: center;
+        width: 5%;
+    }
+    & > .next {
+        text-align: left;
+        width: 50%;
+    }
+    & > .prev {
+        text-align: right;
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 980px) {
+    .post-nav {
+        position: absolute;
+        height: 90px;
+        top: calc(100% - 110px);
+        grid: none;
+        width: calc(100% - 40px);        
+    }
+}

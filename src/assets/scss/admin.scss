@@ -1,0 +1,11 @@
+.postbox .inside>p:last-child{
+    display: none;
+}
+
+#excerpt {
+    height: 8em;
+}
+
+.empty-container::after {
+    display: none !important;
+}

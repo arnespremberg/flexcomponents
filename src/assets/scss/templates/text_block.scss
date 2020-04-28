@@ -1,0 +1,11 @@
+.text-block {
+    margin-bottom: 120px;
+    &.left {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    &.right {
+        grid-column-start: 5;
+        grid-column-end: 7;
+    }
+}
