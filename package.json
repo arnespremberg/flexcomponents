@@ -1,0 +1,14 @@
+{
+    "name": "flexcomp",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "dotenv": "^8.2.0"
+    },
+    "DB_NAME": "test",
+    "scripts": {
+        "wp": "vendor/bin/wp --path=public ",
+        "download_wp": "yarn wp core download",
+        "config_wp": "yarn wp config create --skip-check --dbname=$(grep DB_NAME .env | cut -d '=' -f2) --dbuser=$(grep DB_USER .env | cut -d '=' -f2) --dbpass=$(grep DB_PASS .env | cut -d '=' -f2) --dbname=$(grep DB_NAME .env | cut -d '=' -f2)"
+    }
+}

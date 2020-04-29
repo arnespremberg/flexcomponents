@@ -1,6 +1,6 @@
 # flexcomponents
 ## A component based theme boilerplate for WordPress based on Advanced Custom Fields' flexible content field
-Note: You'll need an ACF Pro license, Yarn/NPM and of course PHP and and SQL Database running
+Note: You'll need an ACF Pro license, Yarn/NPM, Composer and of course PHP and a SQL Database running
 
 Author: Arne Spremberg - www.arnespremberg.com
 
@@ -90,6 +90,17 @@ Images can be loaded using `<?php echo responsive_image($image_id, 'XXL', '4096p
 
 
 ## Installation
+
+Run the following commands: 
+
+1. `composer install`
+2. `yarn install`
+3. `yarn setup` - if you want to install WP manually, no need to care for the DB inputs
+4. `yarn wp` - or copy your WP installation manually to `/public/`
+
+possible error with mamp: https://make.wordpress.org/cli/handbook/common-issues/#error-cant-connect-to-the-database
+
+Setup your ACF-Key in the .env file
 
 ## Development
 
