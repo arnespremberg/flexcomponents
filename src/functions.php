@@ -6,6 +6,10 @@ foreach (glob(get_template_directory() . "/functions/*.php") as $file) {
 }
 
 //add fields
+foreach (glob(get_template_directory() . "/fields/*.php") as $file) {
+    include $file;
+}
+//add component fields
 foreach (glob(get_template_directory() . "/fields/**/*.php") as $file) {
     include $file;
 }
