@@ -26,4 +26,4 @@ function add_fieldgroup() {
 	
 }
 
-add_action('acf/init', 'add_fieldgorup');
+add_action('acf/init', 'add_fieldgroup');
