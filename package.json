@@ -3,12 +3,38 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "dotenv": "^8.2.0"
+        "@babel/core": "^7.9.6",
+        "@babel/preset-env": "^7.9.6",
+        "autoprefixer": "^9.7.6",
+        "babel": "^6.23.0",
+        "browser-sync": "^2.26.7",
+        "cssnano": "^4.1.10",
+        "dotenv": "^8.2.0",
+        "fsevents": "^2.1.3",
+        "gulp": "^4.0.2",
+        "gulp-babel": "^8.0.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-connect-php": "^1.0.3",
+        "gulp-postcss": "^8.0.0",
+        "gulp-sass": "^4.1.0",
+        "gulp-sourcemaps": "^2.6.5",
+        "gulp-tap": "^2.0.0",
+        "gulp-uglify-es": "^2.0.0",
+        "gulp-useref": "^4.0.1",
+        "gulp-zip": "^5.0.1",
+        "node-gyp": "^6.1.0",
+        "webpack-stream": "^5.2.1"
     },
-    "DB_NAME": "test",
     "scripts": {
         "wp": "vendor/bin/wp --path=public ",
-        "download_wp": "yarn wp core download",
-        "config_wp": "yarn wp config create --skip-check --dbname=$(grep DB_NAME .env | cut -d '=' -f2) --dbuser=$(grep DB_USER .env | cut -d '=' -f2) --dbpass=$(grep DB_PASS .env | cut -d '=' -f2) --dbname=$(grep DB_NAME .env | cut -d '=' -f2)"
+        "gulp": "./node_modules/.bin/gulp",
+        "download_wp": "npm run wp core download",
+        "config_wp": "./lib/config_wp.js",
+        "activate_theme": "npm run wp theme activate $(grep THEME_NAME .env | cut -d '=' -f2)",
+        "setup_wp": "npm run download_wp && npm run config_wp && npm run gulp build",
+        "develop": "npm run gulp develop",
+        "generate_cpt": "./lib/generate_cpt.js",
+        "generate_tax": "./lib/generate_tax.js",
+        "generate_cmp": "./lib/generate_cmp.js"
     }
 }

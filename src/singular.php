@@ -13,35 +13,11 @@ get_header();
 if (have_posts()) : while (have_posts()) : the_post(); 
 
 // check if the flexible content field has rows of data
-if( have_rows('flexblocks') ):
+if( have_rows('flexcomp_content') ):
     
     ?><main><?php
-    
-    // loop through the rows of data
-    while ( have_rows('flexblocks') ) : the_row();
-        switch(get_row_layout()) {
-
-            case "e-mail":
-                include dirname(__FILE__) . "/templates/e-mail.php";
-            break;
-
-            case "text_block":
-                include dirname(__FILE__) . "/templates/text_block.php";
-            break;
-
-            case "spacing":
-                include dirname(__FILE__) . "/templates/spacing.php";
-            break;
-
-            case "chaos":
-                include dirname(__FILE__) . "/templates/chaos_slides.php";
-            break;
-
-        }
-
-endwhile;
-    
-?></main><?php
+        include_once dirname(__FILE__) . "/load_components.php";
+    ?></main><?php
 
 else :
     ?>

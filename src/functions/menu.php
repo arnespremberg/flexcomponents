@@ -7,5 +7,3 @@
         )
     );}
     add_action( 'init', 'register_menus' );
-
-    /* @TODO can this be generated? */

@@ -1,24 +1,40 @@
 @font-face {
-    font-family: 'Favorit';
-    src: url('../fonts/Favorit-Italic.eot');
-    src: url('../fonts/Favorit-Italic.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Favorit-Italic.woff2') format('woff2'),
-        url('../fonts/Favorit-Italic.woff') format('woff'),
-        url('../fonts/Favorit-Italic.ttf') format('truetype'),
-        url('../fonts/Favorit-Italic.svg#Favorit-Italic') format('svg');
-    font-weight: normal;
-    font-style: italic;
+    font-family: "RoadizSans";
+    font-weight: 300;
+    font-style: normal;
+    src: url("../fonts/roadizsans-light-webfont.eot");
+    src: url("../fonts/roadizsans-light-webfont.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/roadizsans-light-webfont.woff") format("woff"),
+        url("../fonts/roadizsans-light-webfont.ttf") format("truetype"),
+        url("../fonts/roadizsans-light-webfont.svg#RoadizSans") format("svg");
 }
-
 @font-face {
-    font-family: 'Favorit';
-    src: url('../fonts/Favorit-Regular.eot');
-    src: url('../fonts/Favorit-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Favorit-Regular.woff2') format('woff2'),
-        url('../fonts/Favorit-Regular.woff') format('woff'),
-        url('../fonts/Favorit-Regular.ttf') format('truetype'),
-        url('../fonts/Favorit-Regular.svg#Favorit-Regular') format('svg');
+    font-family: "RoadizSans";
     font-weight: normal;
     font-style: normal;
+    src: url("../fonts/roadizsans-regular-webfont.eot");
+    src: url("../fonts/roadizsans-regular-webfont.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/roadizsans-regular-webfont.woff") format("woff"),
+        url("../fonts/roadizsans-regular-webfont.ttf") format("truetype"),
+        url("../fonts/roadizsans-regular-webfont.svg#RoadizSans") format("svg");
 }
-
+@font-face {
+    font-family: "RoadizSans";
+    font-weight: 600;
+    font-style: normal;
+    src: url("../fonts/roadizsans-medium-webfont.eot");
+    src: url("../fonts/roadizsans-medium-webfont.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/roadizsans-medium-webfont.woff") format("woff"),
+        url("../fonts/roadizsans-medium-webfont.ttf") format("truetype"),
+        url("../fonts/roadizsans-medium-webfont.svg#RoadizSans") format("svg");
+}
+@font-face {
+    font-family: "RoadizSans Mono";
+    font-weight: normal;
+    font-style: normal;
+    src: url("../fonts/roadizsans-mono-webfont.eot");
+    src: url("../fonts/roadizsans-mono-webfont.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/roadizsans-mono-webfont.woff") format("woff"),
+        url("../fonts/roadizsans-mono-webfont.ttf") format("truetype"),
+        url("../fonts/roadizsans-mono-webfont.svg#RoadizSans Mono") format("svg");
+}

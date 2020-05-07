@@ -5,7 +5,10 @@
 /* --                                                                               -- */
 /* --                        call inside <img>-Tag as follows:                      -- */
 /* --                                                                               -- */
-/* --      <img <?php echo responsive_image($image_id, 'XXL', '4096px'); ?> />      -- */
+/* --       <img																	-- */
+/* --			<?php echo lazy_responsive_image($image_id, 'XXL', '4096px'); ?>	-- */
+/* --			class="lazyload														-- */
+/* --		/>																		-- */
 /* --                                                                               -- */
 /* --    in this example XXL would be the biggest image size queried and            -- */
 /* --    the max width would be set to 4096px                                       -- */

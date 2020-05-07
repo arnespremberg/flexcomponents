@@ -16,7 +16,7 @@ I developed this boilerplate for customised themes where clients should only use
 ### Components
 The `load-components.php` is included inside the `singular.php`. It loads each of the components' `component.php` when the component is selected for the particular page in the WordPress Admin. This means that you can overwrite the functionality by defining other templates using the [WordPress Template hierarchy](https://developer.wordpress.org/files/2014/10/Screenshot-2019-01-23-00.20.04.png) and selecting anything other than default as template in the WordPress backend to show the Gutenberg Editor.
 
-Each component has it's own SCSS and JS file that will both be compiled and loaded after the global assets into two global files, which are enqueued in `functions/scripts.php`and `functions/stlyes.php`. This might or might not be changed to inline loaded files in the future - I'm not entirely sure which works best. You can obviously change this to your taste.
+Each component has it's own SCSS and JS file that will both be compiled and loaded inline using the code inside component.php. Global SCSS and JS are defined in `assets`. Only `assets/scss/index.scss`, `assets/scss/admin.scss` and `assets/js/index.js` are compiled and then enqueued in `functions/scripts.php` and `functions/stlyes.php`. Any other global SCSS/JS should be imported into these files.
 Any images you will add in the `img` folder will be optimized and loaded into the themes assets folder. That means that in your SCSS you can load images with the relative path staying the same. In your PHP however, in case you might need to add static images, do it using `get_template_directory_uri() . '/assets/img/'`. Images can not have the same name throughout the whole project!
 
 The component's fields are registered in the `fields.php`. It uses the following syntax: https://www.advancedcustomfields.com/resources/register-fields-via-php/ (only the part after "fields")
@@ -91,22 +91,30 @@ Images can be loaded using `<?php echo responsive_image($image_id, 'XXL', '4096p
 
 ## Installation
 
-Run the following commands: 
-
-1. `composer install`
-2. `yarn install`
-3. `yarn setup` - if you want to install WP manually, no need to care for the DB inputs
-4. `yarn wp` - or copy your WP installation manually to `/public/`
-
-possible error with mamp: https://make.wordpress.org/cli/handbook/common-issues/#error-cant-connect-to-the-database
-
-Setup your ACF-Key in the .env file
+1. Clone/Fork this repo
+2. edit the `.env` to include all data for your setup
+3. Run the following commands:   
+	`composer install`  
+	`yarn install`
+4. edit `style.css` to include your desired theme header
+5. run `yarn setup_wp` to download, install and setup a WP installation in `public/`
+6. you can alternatively setup your own custom WP installation inside `public/`
 
 ## Development
 
-## Generating and building Components
+Run `yarn develop` - the WP installation will be served with BrowserSync to the browser.  
+You can use all of the [WP-CLI Commands](https://developer.wordpress.org/cli/commands/) by typing `yarn wp`. This will be useful to scaffold Custom Post Types, quickly edit settings etc.
+
+## Generating/scaffolding components, post types and taxonomies
+
+`yarn generate_cmp <COMPONENT>`
+
+`yarn generate_cpt <POST_TYPE>`
+
+`yarn generate_tax <TAXONOMY>`
 
 ## Deployment, build for production
 
-flexcomp install dev
-flexcomp install prod
+You can simply run `yarn build` and install the generated `.zip` theme file on any WordPress site.
+
+Alternatively you can install WordPress with `yarn setup_wp`. Then set your webserver to serve from `public/` or run a simple PHP server by running `yarn wp server`.
