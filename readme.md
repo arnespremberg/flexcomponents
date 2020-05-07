@@ -11,71 +11,72 @@ The main feature is the component functionality that let's you build components 
 
 I developed this boilerplate for customised themes where clients should only use a certain selection of components to build their page. Thus, the Gutenberg editor will not be displayed by default. A Gutenberg integration using the ACF Blocks function will be interesting for more flexible themes and I consider developing it when I might need it.
 
+## Installation
+
+1. Clone/Fork this repo
+2. copy `.env.example` to `.env` and edit it to include all data for your setup
+3. Run the following commands:   
+	`composer install`  
+	`yarn install`
+4. edit `style.css` to include your desired theme header
+5. run `yarn setup_wp` to download, install and setup a WP installation in `public/`
+6. you can alternatively setup your own custom WP installation inside `public/`
+
+note, that all commands should be run in the repo's root.
+
+## Development
+
+Run `yarn develop` - the WP installation will be served with BrowserSync to the browser.  
+You can use all of the [WP-CLI Commands](https://developer.wordpress.org/cli/commands/) by typing `yarn wp`. This will be useful to scaffold Custom Post Types, quickly edit settings etc.
+
+## Generating/scaffolding components, post types and taxonomies
+
+To generate and register a component run:
+`yarn generate_cmp <COMPONENT>`
+
+To generate and register a Custom Post Type run:
+`yarn generate_cpt <POST_TYPE>`
+
+To generate and register a Taxonomy run:
+`yarn generate_tax <TAXONOMY>`
+
+Components are located in `src/components/` and registerd in `src/load_components.php`. CPTs and Taxonomies are located in `src/functions/`. The Code to generate all of this is located in `lib`
+
+## Deployment, build for production
+
+You can simply run `yarn build` and install the generated `.zip` theme file on any WordPress site.
+
+Alternatively you can install WordPress with `yarn setup_wp`. Then set your webserver to serve from `public/` or run a simple PHP server by running `yarn wp server`.
+
 ## How does this work?
 
+### General Theme development
+The theme can just be developed as any other WordPress theme, following the theme hierarchy, Custom Post Types etc..
+
+Advanced Custom Fields will be installed within the theme. You can add any field groups in PHP files in `src/fields/`. You'll find an example in there, note that it's not loaded, as the field group is not assigned to any post type.
+
+Global SCSS and JS are defined in `assets`. Only `assets/scss/index.scss`, `assets/scss/admin.scss` and `assets/js/index.js` are compiled and then enqueued in `functions/scripts.php` and `functions/stlyes.php`. Any other global SCSS/JS should be imported into these files.
+
 ### Components
-The `load-components.php` is included inside the `singular.php`. It loads each of the components' `component.php` when the component is selected for the particular page in the WordPress Admin. This means that you can overwrite the functionality by defining other templates using the [WordPress Template hierarchy](https://developer.wordpress.org/files/2014/10/Screenshot-2019-01-23-00.20.04.png) and selecting anything other than default as template in the WordPress backend to show the Gutenberg Editor.
+The `src/load-components.php` is included inside the `src/singular.php`. It loads each of the components' `component.php` when the component is selected for the particular page in the WordPress Admin. This means that you can overwrite the functionality by defining other templates using the [WordPress Template hierarchy](https://developer.wordpress.org/files/2014/10/Screenshot-2019-01-23-00.20.04.png) and selecting anything other than default as template in the WordPress backend to show the Gutenberg Editor.
 
-Each component has it's own SCSS and JS file that will both be compiled and loaded inline using the code inside component.php. Global SCSS and JS are defined in `assets`. Only `assets/scss/index.scss`, `assets/scss/admin.scss` and `assets/js/index.js` are compiled and then enqueued in `functions/scripts.php` and `functions/stlyes.php`. Any other global SCSS/JS should be imported into these files.
-Any images you will add in the `img` folder will be optimized and loaded into the themes assets folder. That means that in your SCSS you can load images with the relative path staying the same. In your PHP however, in case you might need to add static images, do it using `get_template_directory_uri() . '/assets/img/'`. Images can not have the same name throughout the whole project!
+Each component has it's own SCSS and JS file that will both be compiled and loaded inline using the code inside `src/components/<COMPONENT>/index.php`. 
+The Assets folder will be simply copied over, keeping the same path as in the `src`. That means in PHP you load them with `get_template_directory_uri() . '/components/<COMPONENT>/assets/'`.
 
-The component's fields are registered in the `fields.php`. It uses the following syntax: https://www.advancedcustomfields.com/resources/register-fields-via-php/ (only the part after "fields")
+Each component is an ACF Flexible Content Layout. They are located within a field group called `flexcomp` and a field called `flexcomp_content`. These are registered in `fields/acf_flexcomp.php`.
+The component's sub fields are registered in the `fields.php`. It uses the following syntax: https://www.advancedcustomfields.com/resources/register-fields-via-php/
 
-```
-'layout_5dd560725c35a' => array(
-	'key' => 'layout_5dd560725c35a',
-	'name' => 'text_block',
-	'label' => 'Text Block',
-	'display' => 'block',
-	'sub_fields' => array(
-		array(
-			'key' => 'field_5dd55fa10fabb',
-			'label' => 'Text',
-			'name' => 'text',
-			'type' => 'textarea',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'acfe_permissions' => '',
-			'default_value' => '',
-			'placeholder' => '',
-			'maxlength' => '',
-			'rows' => '',
-			'new_lines' => 'br',
-			'acfe_textarea_code' => 0,
-		),
-		array(
-			'key' => 'field_5de188aeae12a',
-			'label' => 'Position',
-			'name' => 'position',
-			'type' => 'button_group',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'acfe_permissions' => '',
-			'choices' => array(
-				'left' => 'left',
-				'right' => 'right',
-			),
-			'allow_null' => 0,
-			'default_value' => 'left',
-			'layout' => 'horizontal',
-			'return_format' => 'value',
-		),
-	),
-	'min' => '',
-	'max' => '',
-),
+```php
+    $fields = array(
+        array(
+            'key' => 'COMPONENT_content',
+            'label' => 'COMPONENT_content',
+            'name' => 'COMPONENT_content',
+            'type' => 'wysiwyg',
+            'parent' => 'flexcomp'
+        ),
+    );
+
 ```
 
 ### Other stuff
@@ -87,34 +88,3 @@ All other files work as generally expected.
 You can set up your database connection and other config in the `.env` or create a `.local.env` file. The develop/install local process reads both of those and priorises `.local.env` while the build/install prod process unly uses `.env`.
 
 Images can be loaded using `<?php echo responsive_image($image_id, 'XXL', '4096px'); ?> />` or `<?php echo lazy_responsive_image($image_id, 'XXL', '4096px'); ?> />`
-
-
-## Installation
-
-1. Clone/Fork this repo
-2. edit the `.env` to include all data for your setup
-3. Run the following commands:   
-	`composer install`  
-	`yarn install`
-4. edit `style.css` to include your desired theme header
-5. run `yarn setup_wp` to download, install and setup a WP installation in `public/`
-6. you can alternatively setup your own custom WP installation inside `public/`
-
-## Development
-
-Run `yarn develop` - the WP installation will be served with BrowserSync to the browser.  
-You can use all of the [WP-CLI Commands](https://developer.wordpress.org/cli/commands/) by typing `yarn wp`. This will be useful to scaffold Custom Post Types, quickly edit settings etc.
-
-## Generating/scaffolding components, post types and taxonomies
-
-`yarn generate_cmp <COMPONENT>`
-
-`yarn generate_cpt <POST_TYPE>`
-
-`yarn generate_tax <TAXONOMY>`
-
-## Deployment, build for production
-
-You can simply run `yarn build` and install the generated `.zip` theme file on any WordPress site.
-
-Alternatively you can install WordPress with `yarn setup_wp`. Then set your webserver to serve from `public/` or run a simple PHP server by running `yarn wp server`.

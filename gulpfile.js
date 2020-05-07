@@ -62,7 +62,7 @@ gulp.task('js', function(){
 
 gulp.task('fonts', function () {
     return gulp.src('src/assets/fonts/**/*')
-        .pipe(gulp.dest(dist + '/assets/fonts'))
+        .pipe(gulp.dest(theme + '/assets/fonts'))
 });
 
 gulp.task('cmp_js', function(){
@@ -160,7 +160,7 @@ gulp.task('compress', function() {
 
 // Cleans the dist folder
 gulp.task('cleandist', function () {
-    return del([theme + '/**', '!' + dist]);
+    return del([theme]);
 })
 
 gulp.task('images', function () {
@@ -168,7 +168,7 @@ gulp.task('images', function () {
         .pipe(cache(imagemin({
             interlaced: true
         })))
-        .pipe(gulp.dest(dist + '/assets/img'))
+        .pipe(gulp.dest(theme + '/assets/img'))
 })
 
 gulp.task('components',
@@ -191,6 +191,7 @@ gulp.task('components',
         'functions',
         'fields',
         'theme',
+        'images',
         'compress',
     )
 )
@@ -201,7 +202,7 @@ gulp.task('php', function (){
 
 gulp.task('serve', function() {
     browserSync.init({
-        proxy: "localhost:8080",
+        proxy: server,
     })
 })
 
