@@ -30,7 +30,7 @@ note, that all commands should be run in the repo's root.
 ## Development
 
 Run `yarn develop` - the WP installation will be served with BrowserSync to the browser.  
-You can use all of the [WP-CLI Commands](https://developer.wordpress.org/cli/commands/) by typing `yarn wp`. This will be useful to scaffold Custom Post Types, quickly edit settings etc.
+You can use all of the [WP-CLI Commands](https://developer.wordpress.org/cli/commands/) by typing `yarn wp`. This will be useful to quickly edit settings etc.
 
 
 ## Generating/scaffolding components, post types and taxonomies
@@ -90,7 +90,7 @@ By default the Flexcomponent field group is displayed for pages and disables the
 
 ## Other stuff
 
-Images can be loaded using `<?php echo responsive_image($image_id, 'XXL', '4096px'); ?> />` or `<?php echo lazy_responsive_image($image_id, 'XXL', '4096px'); ?> />`
+Images can be loaded using `<?php echo responsive_image($image_id, 'XXL', '4096px'); ?> />` or `<?php echo lazy_responsive_image($image_id, 'XXL', '4096px'); ?> class="lazyload" />`
 
 `src/functions/` contains plenty of useful functions I use on a regular basis.
 
