@@ -1,7 +1,7 @@
 <?php
 
 function flexcomp_scripts() {
-    wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/index.js', array(), null, true);
+    wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.min.js', array(), null, true);
 
 }
 
