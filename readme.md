@@ -4,12 +4,14 @@ Note: You'll need an ACF Pro license, Yarn/NPM, Composer and of course PHP and a
 
 Author: Arne Spremberg - www.arnespremberg.com
 
+
 ## What is this supposed to be?
 This boilerplate comes with plenty of useful tools such as WP-CLI, SCSS and ES6 support, Composer, NPM, responsive and lazy loaded images, a task runner to for your development environment and building a finished theme in a ZIP-Folder. See the most important CLI commands below.
 
 The main feature is the component functionality that let's you build components that will later be selectable in the WP-Admin by using the Flexible Content functionality of ACF Pro.
 
 I developed this boilerplate for customised themes where clients should only use a certain selection of components to build their page. Thus, the Gutenberg editor will not be displayed by default. A Gutenberg integration using the ACF Blocks function will be interesting for more flexible themes and I consider developing it when I might need it.
+
 
 ## Installation
 
@@ -24,10 +26,12 @@ I developed this boilerplate for customised themes where clients should only use
 
 note, that all commands should be run in the repo's root.
 
+
 ## Development
 
 Run `yarn develop` - the WP installation will be served with BrowserSync to the browser.  
 You can use all of the [WP-CLI Commands](https://developer.wordpress.org/cli/commands/) by typing `yarn wp`. This will be useful to scaffold Custom Post Types, quickly edit settings etc.
+
 
 ## Generating/scaffolding components, post types and taxonomies
 
@@ -42,11 +46,13 @@ To generate and register a Taxonomy run:
 
 Components are located in `src/components/` and registerd in `src/load_components.php`. CPTs and Taxonomies are located in `src/functions/`. The Code to generate all of this is located in `lib`
 
+
 ## Deployment, build for production
 
 You can simply run `yarn build` and install the generated `.zip` theme file on any WordPress site.
 
 Alternatively you can install WordPress with `yarn setup_wp`. Then set your webserver to serve from `public/` or run a simple PHP server by running `yarn wp server`.
+
 
 ## How does this work?
 
@@ -79,12 +85,13 @@ The component's sub fields are registered in the `fields.php`. It uses the follo
 
 ```
 
-### Other stuff
-Any global assets are managed in the `assets`-folder. I would strongly recommend to enqeue any dependency or vendor scripts and styles in the respective files in `functions`
-The WordPress `functions.php` loads any PHP-file that is located in the `functions`-folder.
+By default the Flexcomponent field group is displayed for pages and disables the classic editor. You can of course edit this in `fields/acf_flexcomp.php` to suit your needs.
 
-All other files work as generally expected.
 
-You can set up your database connection and other config in the `.env` or create a `.local.env` file. The develop/install local process reads both of those and priorises `.local.env` while the build/install prod process unly uses `.env`.
+## Other stuff
 
 Images can be loaded using `<?php echo responsive_image($image_id, 'XXL', '4096px'); ?> />` or `<?php echo lazy_responsive_image($image_id, 'XXL', '4096px'); ?> />`
+
+`src/functions/` contains plenty of useful functions I use on a regular basis.
+
+If you have trouble writing ACF Fields in PHP you can easily set them up in WP-Admin and export them to PHP and include these files in `src/fields`
