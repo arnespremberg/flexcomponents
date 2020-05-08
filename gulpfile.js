@@ -113,7 +113,7 @@ gulp.task('cmp_component', function() {
 })
 
 gulp.task('cmp_assets', function() {
-    return gulp.src('src/components/**/assets')
+    return gulp.src('src/components/**/assets/*')
         .pipe(gulp.dest(theme + '/components/'))
         .pipe(browserSync.reload({
             stream: true
