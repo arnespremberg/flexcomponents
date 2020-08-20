@@ -23,6 +23,7 @@ I developed this boilerplate for customised themes where clients should only use
 4. edit `style.css` to include your desired theme header
 5. run `yarn setup_wp` to download, install and setup a WP installation in `public/`
 6. you can alternatively setup your own custom WP installation inside `public/`
+7. if necessary create the appropriate database using `yarn wp db create` and import any sql file using `yarn wp db import <path to file>`
 
 note, that all commands should be run in the repo's root.
 
