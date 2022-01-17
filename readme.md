@@ -1,3 +1,5 @@
+## NOTICE: this repository is not maintained anymore. If you're looking for something similar, maybe consider [FLYNT](https://flyntwp.com/)?
+
 # flexcomponents
 ## A component based theme boilerplate for WordPress based on Advanced Custom Fields' flexible content field
 Note: You'll need an ACF Pro license, Yarn/NPM, Composer and of course PHP and a SQL Database running
